@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bob The Robber - Wszystkie części 🎮</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px;
+            background: #222;
+            margin-bottom: 20px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .game-card {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+            background: #292929;
+        }
+
+        .game-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        #game-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none; /* <-- WAŻNE: ukryte na start */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .iframe-wrapper {
+            width: 90%;
+            height: 80%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-btn {
+            background: red;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bob The Robber - Zagraj we wszystkie części 🎮</h1>
+    </header>
+
+    <main>
+        <div class="games-grid">
+
+            <!-- Bob The Robber 1 -->
+            <div class="game-card" onclick="loadGame('https://html5.gamedistribution.com/18d28481ea514f3c838f9a5a355fb0f7/')">
+                <img src="bob1.jpg" alt="Bob The Robber">
+                <p>Bob The Robber</p>
+            </div>
+
+            <!-- Bob The Robber 2 -->
+            <div class="game-card" onclick="loadGame('https://html5.gamedistribution.com/34d6aae0257d4e4c8068cbdfc11a8758/')">
+                <img src="bob2.jpg" alt="Bob The Robber 2">
+                <p>Bob The Robber 2</p>
+            </div>
+
+            <!-- Bob The Robber 3 -->
+            <div class="game-card" onclick="loadGame('https://html5.gamedistribution.com/iframe/bob-the-robber-3')">
+                <img src="bob3.jpg" alt="Bob The Robber 3">
+                <p>Bob The Robber 3</p>
+            </div>
+
+            <!-- Bob The Robber 4 -->
+            <div class="game-card" onclick="loadGame('https://html5.gamedistribution.com/iframe/bob-the-robber-4')">
+                <img src="bob4.jpg" alt="Bob The Robber 4">
+                <p>Bob The Robber 4</p>
+            </div>
+
+            <!-- Bob The Robber: Temple Adventure -->
+            <div class="game-card" onclick="loadGame('https://html5.gamedistribution.com/iframe/bob-the-robber-temple-adventure')">
+                <img src="bob-temple.jpg" alt="Bob The Robber: Temple Adventure">
+                <p>Bob The Robber: Temple Adventure</p>
+            </div>
+
+        </div>
+
+        <!-- Okno z grą -->
+        <div id="game-container">
+            <button class="close-btn" onclick="closeGame()">❌ Zamknij grę</button>
+            <div class="iframe-wrapper">
+                <iframe id="game-player" src="" allowfullscreen></iframe>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function loadGame(url) {
+            const container = document.getElementById('game-container');
+            const player = document.getElementById('game-player');
+
+            player.src = url;
+            container.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeGame() {
+            const container = document.getElementById('game-container');
+            const player = document.getElementById('game-player');
+
+            player.src = "";
+            container.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    </script>
+
+</body>
+</html>
+
